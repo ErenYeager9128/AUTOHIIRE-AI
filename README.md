@@ -38,17 +38,11 @@ An **AI-powered career assistant** that:
 
 ---
 
-## 📂 Folder Structure
-autohire-ai/
-│── resume_parser/ # Resume text extraction & keyword analysis
-│── github_scraper/ # GitHub API integration for project scanning
-│── classifier/ # AI model for career classification
-│── job_scraper/ # Job search & matching module
-│── auto_apply/ # Automation scripts for job applications
-│── dashboard/ # React frontend for results display
-│── main.py # CLI entry point
-│── requirements.txt # Dependencies
-│── README.md # This file
-
-
+## 🚦 Getting Started
+**Clone & Setup**
+-git clone https://github.com/<your-username>/autohire-ai.git
+-cd autohire-ai
+-python -m venv venv
+-source venv/bin/activate  # On Windows: venv\Scripts\activate
+-pip install -r requirements.txt
 
