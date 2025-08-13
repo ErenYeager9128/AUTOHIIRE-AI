@@ -38,11 +38,14 @@ An **AI-powered career assistant** that:
 
 ---
 
-## 🚦 Getting Started
-**Clone & Setup**
--git clone https://github.com/<your-username>/autohire-ai.git
--cd autohire-ai
--python -m venv venv
--source venv/bin/activate  # On Windows: venv\Scripts\activate
--pip install -r requirements.txt
-
+### Getting Started
+- Clone the repository:  
+  `git clone https://github.com/autohire-ai.git`
+- Change directory:  
+  `cd autohire-ai`
+- Create a virtual environment:  
+  `python -m venv venv`
+- Activate it:  
+  `source venv/bin/activate`  # On Windows: `venv\Scripts\activate`
+- Install dependencies:  
+  `pip install -r requirements.txt`
