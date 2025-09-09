@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AutoHire AI - 3D Cyberpunk Career Hub{% endblock %}</title>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="AI-powered resume analysis and job matching with 3D interactive interface">
+    <meta name="keywords" content="AI, resume, job matching, career, 3D, interactive">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/3d-effects.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ url_for('static', filename='js/main.js') }}" as="script">
+    <link rel="preload" href="{{ url_for('static', filename='js/3d-effects.js') }}" as="script">
+</head>
+<body class="cyberpunk-theme">
+    <!-- Custom 3D Cursor -->
+    <div id="custom-cursor" class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+        <div class="cursor-trail"></div>
+    </div>
+    
+    <!-- Particle Background -->
+    <div id="particle-background" class="particle-background">
+        <canvas id="particle-canvas"></canvas>
+    </div>
+    
+    <!-- Floating 3D Navigation -->
+    <nav class="nav-3d">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-3d">
+                    <span class="logo-text">AUTO</span>
+                    <span class="logo-accent">HIRE</span>
+                    <span class="logo-ai">AI</span>
+                </div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}" class="nav-link" data-route="dashboard">
+                    <span class="link-icon">🏠</span>
+                    <span class="link-text">Dashboard</span>
+                </a>
+                <a href="{{ url_for('upload_page') }}" class="nav-link" data-route="upload">
+                    <span class="link-icon">📄</span>
+                    <span class="link-text">Upload Resume</span>
+                </a>
+                <a href="{{ url_for('results_page') }}" class="nav-link" data-route="results">
+                    <span class="link-icon">📊</span>
+                    <span class="link-text">Analysis</span>
+                </a>
+                <a href="{{ url_for('jobs_page') }}" class="nav-link" data-route="jobs">
+                    <span class="link-icon">💼</span>
+                    <span class="link-text">Job Matches</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="nav-btn theme-toggle" id="theme-toggle">
+                    <span class="btn-icon">🌙</span>
+                </button>
+                <button class="nav-btn profile-btn" id="profile-btn">
+                    <span class="btn-icon">👤</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content with 3D Container -->
+    <main class="main-3d">
+        <div class="content-container">
+            <!-- 3D Floating Header -->
+            <header class="page-header-3d">
+                <div class="header-content">
+                    <h1 class="page-title-3d">{% block page_title %}AutoHire AI{% endblock %}</h1>
+                    <p class="page-subtitle-3d">{% block page_subtitle %}3D Cyberpunk Career Hub{% endblock %}</p>
+                </div>
+                
+                <!-- Floating 3D Elements -->
+                <div class="floating-elements">
+                    <div class="floating-card card-1"></div>
+                    <div class="floating-card card-2"></div>
+                    <div class="floating-card card-3"></div>
+                </div>
+            </header>
+            
+            <!-- Page Content -->
+            <div class="page-content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+    
+    <!-- 3D Footer -->
+    <footer class="footer-3d">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">AutoHire AI</h3>
+                <p class="footer-text">Revolutionizing career development with AI and 3D technology</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-subtitle">Features</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Resume Analysis</a></li>
+                    <li><a href="#" class="footer-link">Job Matching</a></li>
+                    <li><a href="#" class="footer-link">Career Insights</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-subtitle">Connect</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 AutoHire AI. Built with ❤️ and 3D magic.</p>
+        </div>
+    </footer>
+    
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-3d-loading">
+                    <span class="logo-text">AUTO</span>
+                    <span class="logo-accent">HIRE</span>
+                    <span class="logo-ai">AI</span>
+                </div>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Initializing 3D Career Hub...</p>
+        </div>
+    </div>
+    
+    <!-- Notification System -->
+    <div id="notification-container" class="notification-container"></div>
+    
+    <!-- JavaScript Files -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/3d-effects.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cursor.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    
+    <!-- Page-specific scripts -->
+    {% block scripts %}{% endblock %}
+    
+    <!-- Initialize 3D Effects -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize 3D effects
+            init3DEffects();
+            
+            // Initialize particle system
+            initParticleSystem();
+            
+            // Initialize custom cursor
+            initCustomCursor();
+            
+            // Initialize animations
+            initAnimations();
+            
+            // Hide loading screen
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading-screen').style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error - AutoHire AI{% endblock %}
+
+{% block page_title %}500 - Server Error{% endblock %}
+{% block page_subtitle %}Something went wrong on our end. We're working to fix it.{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-content">
+        <div class="error-visual">
+            <div class="error-number card-3d tilt-3d" data-tilt="15" data-depth="10">
+                <span class="number-text">500</span>
+                <div class="error-glow"></div>
+            </div>
+        </div>
+        
+        <div class="error-message card-3d">
+            <h2 class="error-title text-3d-glow">Internal Server Error</h2>
+            <p class="error-description">
+                We're experiencing some technical difficulties. Our AI systems are working 
+                overtime to resolve the issue. Please try again in a few moments.
+            </p>
+            
+            <div class="error-status">
+                <div class="status-indicator">
+                    <div class="status-dot active"></div>
+                    <span class="status-text">AI Systems: Online</span>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot active"></div>
+                    <span class="status-text">Database: Connected</span>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot error"></div>
+                    <span class="status-text">Server: Investigating</span>
+                </div>
+            </div>
+            
+            <div class="error-actions">
+                <button class="btn-3d btn-primary" onclick="location.reload()">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">Try Again</span>
+                </button>
+                
+                <button class="btn-3d btn-secondary" onclick="window.location.href='{{ url_for('index') }}'">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">Go Home</span>
+                </button>
+                
+                <button class="btn-3d btn-accent" onclick="contactSupport()">
+                    <span class="btn-icon">📧</span>
+                    <span class="btn-text">Contact Support</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="error-illustration">
+            <div class="system-status">
+                <div class="status-card card-3d">
+                    <div class="status-header">
+                        <h4>System Status</h4>
+                        <div class="status-time" id="status-time">--:--:--</div>
+                    </div>
+                    <div class="status-items">
+                        <div class="status-item">
+                            <span class="item-label">Resume Parser</span>
+                            <span class="item-status online">●</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="item-label">AI Classifier</span>
+                            <span class="item-status online">●</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="item-label">Job Matcher</span>
+                            <span class="item-status online">●</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="item-label">Database</span>
+                            <span class="item-status online">●</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="item-label">Web Server</span>
+                            <span class="item-status error">●</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚨 500 page initialized');
+    
+    // Initialize error page animations
+    initErrorAnimations();
+    
+    // Start status updates
+    startStatusUpdates();
+    
+    // Add interactive elements
+    addInteractiveElements();
+});
+
+function initErrorAnimations() {
+    // Animate error number with error effect
+    const errorNumber = document.querySelector('.error-number');
+    errorNumber.classList.add('animate-bounce-in');
+    
+    // Add pulsing error effect
+    errorNumber.style.animation = 'pulse 2s infinite, glow 1.5s ease-in-out infinite alternate';
+    
+    // Animate error message
+    const errorMessage = document.querySelector('.error-message');
+    errorMessage.style.animationDelay = '0.5s';
+    errorMessage.classList.add('animate-fade-in');
+    
+    // Animate status indicators
+    const statusIndicators = document.querySelectorAll('.status-indicator');
+    statusIndicators.forEach((indicator, index) => {
+        indicator.style.animationDelay = `${1 + index * 0.2}s`;
+        indicator.classList.add('animate-slide-up');
+    });
+}
+
+function startStatusUpdates() {
+    // Update time
+    updateTime();
+    setInterval(updateTime, 1000);
+    
+    // Simulate system status changes
+    setInterval(updateSystemStatus, 3000);
+}
+
+function updateTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    document.getElementById('status-time').textContent = timeString;
+}
+
+function updateSystemStatus() {
+    // Randomly change some status indicators
+    const statusItems = document.querySelectorAll('.status-item');
+    statusItems.forEach(item => {
+        if (Math.random() < 0.1) { // 10% chance to change status
+            const statusDot = item.querySelector('.item-status');
+            const currentStatus = statusDot.className.includes('online') ? 'online' : 'error';
+            const newStatus = currentStatus === 'online' ? 'error' : 'online';
+            
+            statusDot.className = `item-status ${newStatus}`;
+            
+            // Add animation effect
+            statusDot.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                statusDot.style.transform = 'scale(1)';
+            }, 200);
+        }
+    });
+}
+
+function addInteractiveElements() {
+    // Add click effect to error number
+    const errorNumber = document.querySelector('.error-number');
+    errorNumber.addEventListener('click', function() {
+        this.style.transform = 'scale(1.1) rotate(5deg)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 300);
+    });
+    
+    // Add hover effects to buttons
+    const buttons = document.querySelectorAll('.btn-3d');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.05)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+    
+    // Add click effects to status items
+    const statusItems = document.querySelectorAll('.status-item');
+    statusItems.forEach(item => {
+        item.addEventListener('click', function() {
+            this.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 200);
+        });
+    });
+}
+
+function contactSupport() {
+    // Show contact information
+    const supportInfo = `
+        <div class="support-modal">
+            <h3>Contact Support</h3>
+            <p>If this error persists, please contact our support team:</p>
+            <ul>
+                <li>Email: support@autohire.ai</li>
+                <li>Discord: #support</li>
+                <li>GitHub Issues: Report Bug</li>
+            </ul>
+            <p>Include this error code: 500-${Date.now()}</p>
+        </div>
+    `;
+    
+    // Create and show notification
+    showNotification(supportInfo, 'info');
+}
+
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type} animate-slide-down`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️'}</span>
+            <div class="notification-message">${message}</div>
+        </div>
+    `;
+    
+    // Add to notification container
+    const container = document.getElementById('notification-container');
+    container.appendChild(notification);
+    
+    // Remove after 10 seconds for support info
+    setTimeout(() => {
+        notification.classList.add('animate-slide-up');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 10000);
+}
+
+// Add some system-like effects
+setInterval(() => {
+    const errorNumber = document.querySelector('.error-number');
+    if (Math.random() < 0.05) { // 5% chance every 3 seconds
+        // Add glitch effect
+        errorNumber.style.filter = 'hue-rotate(90deg) brightness(1.2)';
+        errorNumber.style.transform = 'skew(2deg, 1deg)';
+        
+        setTimeout(() => {
+            errorNumber.style.filter = '';
+            errorNumber.style.transform = '';
+        }, 300);
+    }
+}, 3000);
+
+// Simulate system recovery
+setTimeout(() => {
+    const webServerStatus = document.querySelector('.status-item:last-child .item-status');
+    if (webServerStatus) {
+        webServerStatus.className = 'item-status online';
+        webServerStatus.style.animation = 'pulse 1s infinite';
+        
+        // Show recovery notification
+        setTimeout(() => {
+            showNotification('System recovered! You can now try again.', 'success');
+        }, 1000);
+    }
+}, 15000); // 15 seconds
+</script>
+{% endblock %}

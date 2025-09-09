@@ -1,0 +1,579 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Results - AutoHire AI{% endblock %}
+
+{% block page_title %}Resume Analysis Results{% endblock %}
+{% block page_subtitle %}AI-Powered Insights & Optimization{% endblock %}
+
+{% block content %}
+<div class="results-container">
+    <!-- Analysis Summary -->
+    <section class="summary-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Analysis Summary</h2>
+            <p class="section-subtitle">Comprehensive breakdown of your resume performance</p>
+        </div>
+        
+        <div class="summary-grid">
+            <div class="summary-card card-3d tilt-3d" data-tilt="5" data-depth="3">
+                <div class="summary-icon">🎯</div>
+                <h3 class="summary-title">Career Classification</h3>
+                <div class="summary-value text-3d">Software Development Engineer</div>
+                <div class="summary-confidence">Confidence: 92%</div>
+            </div>
+            
+            <div class="summary-card card-3d tilt-3d" data-tilt="5" data-depth="3">
+                <div class="summary-icon">⭐</div>
+                <h3 class="summary-title">Overall Score</h3>
+                <div class="summary-value text-3d">87/100</div>
+                <div class="summary-grade">Grade: A-</div>
+            </div>
+            
+            <div class="summary-card card-3d tilt-3d" data-tilt="5" data-depth="3">
+                <div class="summary-icon">📊</div>
+                <h3 class="summary-title">ATS Compatibility</h3>
+                <div class="summary-value text-3d">94%</div>
+                <div class="summary-status">Excellent</div>
+            </div>
+            
+            <div class="summary-card card-3d tilt-3d" data-tilt="5" data-depth="3">
+                <div class="summary-icon">💼</div>
+                <h3 class="summary-title">Job Matches</h3>
+                <div class="summary-value text-3d">15</div>
+                <div class="summary-status">High Demand</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Detailed Analysis -->
+    <section class="analysis-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Detailed Analysis</h2>
+            <p class="section-subtitle">Deep dive into your resume strengths and areas for improvement</p>
+        </div>
+        
+        <div class="analysis-tabs">
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="skills">Skills Analysis</button>
+                <button class="tab-btn" data-tab="content">Content Quality</button>
+                <button class="tab-btn" data-tab="formatting">Formatting & Structure</button>
+                <button class="tab-btn" data-tab="keywords">Keyword Optimization</button>
+            </div>
+            
+            <div class="tab-content">
+                <!-- Skills Analysis Tab -->
+                <div class="tab-panel active" id="skills-tab">
+                    <div class="skills-overview">
+                        <h3 class="panel-title">Technical Skills Breakdown</h3>
+                        
+                        <div class="skill-categories">
+                            <div class="skill-category card-3d">
+                                <h4 class="category-title">Programming Languages</h4>
+                                <div class="skill-bars">
+                                    <div class="skill-bar">
+                                        <div class="skill-info">
+                                            <span class="skill-name">Python</span>
+                                            <span class="skill-score">95%</span>
+                                        </div>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skill-bar">
+                                        <div class="skill-info">
+                                            <span class="skill-name">JavaScript</span>
+                                            <span class="skill-score">88%</span>
+                                        </div>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" style="width: 88%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skill-bar">
+                                        <div class="skill-info">
+                                            <span class="skill-name">Java</span>
+                                            <span class="skill-score">82%</span>
+                                        </div>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" style="width: 82%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category card-3d">
+                                <h4 class="category-title">Frameworks & Tools</h4>
+                                <div class="skill-bars">
+                                    <div class="skill-bar">
+                                        <div class="skill-info">
+                                            <span class="skill-name">React</span>
+                                            <span class="skill-score">90%</span>
+                                        </div>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skill-bar">
+                                        <div class="skill-info">
+                                            <span class="skill-name">Node.js</span>
+                                            <span class="skill-score">85%</span>
+                                        </div>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="skill-bar">
+                                        <div class="skill-info">
+                                            <span class="skill-name">Docker</span>
+                                            <span class="skill-score">78%</span>
+                                        </div>
+                                        <div class="skill-progress">
+                                            <div class="skill-fill" style="width: 78%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skills-recommendations card-3d">
+                            <h4 class="recommendations-title">Skills Recommendations</h4>
+                            <div class="recommendations-list">
+                                <div class="recommendation-item">
+                                    <span class="rec-icon">🚀</span>
+                                    <span class="rec-text">Consider adding cloud computing skills (AWS/Azure)</span>
+                                </div>
+                                <div class="recommendation-item">
+                                    <span class="rec-icon">🔒</span>
+                                    <span class="rec-text">Cybersecurity knowledge would enhance your profile</span>
+                                </div>
+                                <div class="recommendation-item">
+                                    <span class="rec-icon">📈</span>
+                                    <span class="rec-text">Machine learning basics are in high demand</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Quality Tab -->
+                <div class="tab-panel" id="content-tab">
+                    <div class="content-analysis">
+                        <h3 class="panel-title">Content Quality Assessment</h3>
+                        
+                        <div class="quality-metrics">
+                            <div class="metric-card card-3d">
+                                <div class="metric-header">
+                                    <h4 class="metric-title">Clarity & Readability</h4>
+                                    <div class="metric-score">9.2/10</div>
+                                </div>
+                                <div class="metric-description">
+                                    Your resume content is clear and easy to understand. 
+                                    Technical terms are well-explained and achievements are quantified.
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card card-3d">
+                                <div class="metric-header">
+                                    <h4 class="metric-title">Achievement Focus</h4>
+                                    <div class="metric-score">8.8/10</div>
+                                </div>
+                                <div class="metric-description">
+                                    Good use of action verbs and quantifiable results. 
+                                    Consider adding more specific metrics and outcomes.
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card card-3d">
+                                <div class="metric-header">
+                                    <h4 class="metric-title">Professional Tone</h4>
+                                    <div class="metric-score">9.5/10</div>
+                                </div>
+                                <div class="metric-description">
+                                    Excellent professional language and industry-appropriate terminology. 
+                                    Maintains credibility throughout.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="content-suggestions card-3d">
+                            <h4 class="suggestions-title">Content Enhancement Suggestions</h4>
+                            <ul class="suggestions-list">
+                                <li>Add more specific metrics (e.g., "Increased performance by 25%")</li>
+                                <li>Include industry-specific keywords naturally</li>
+                                <li>Highlight leadership and collaboration experiences</li>
+                                <li>Add certifications and ongoing education</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formatting Tab -->
+                <div class="tab-panel" id="formatting-tab">
+                    <div class="formatting-analysis">
+                        <h3 class="panel-title">Formatting & Structure Analysis</h3>
+                        
+                        <div class="formatting-score">
+                            <div class="score-circle card-3d">
+                                <div class="score-number">94%</div>
+                                <div class="score-label">Formatting Score</div>
+                            </div>
+                        </div>
+                        
+                        <div class="formatting-details">
+                            <div class="detail-item card-3d">
+                                <h4 class="detail-title">✅ Layout & Organization</h4>
+                                <p class="detail-description">
+                                    Clean, professional layout with logical information hierarchy. 
+                                    Sections are well-defined and easy to scan.
+                                </p>
+                            </div>
+                            
+                            <div class="detail-item card-3d">
+                                <h4 class="detail-title">✅ Typography & Spacing</h4>
+                                <p class="detail-description">
+                                    Consistent font usage and appropriate spacing. 
+                                    Text is readable and professional-looking.
+                                </p>
+                            </div>
+                            
+                            <div class="detail-item card-3d">
+                                <h4 class="detail-title">⚠️ Visual Elements</h4>
+                                <p class="detail-description">
+                                    Consider adding subtle visual elements like icons or color accents 
+                                    to make key information stand out.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Keywords Tab -->
+                <div class="tab-panel" id="keywords-tab">
+                    <div class="keywords-analysis">
+                        <h3 class="panel-title">Keyword Optimization Analysis</h3>
+                        
+                        <div class="keywords-overview">
+                            <div class="keyword-stats card-3d">
+                                <div class="stat-item">
+                                    <div class="stat-number">87</div>
+                                    <div class="stat-label">Keywords Found</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">94%</div>
+                                    <div class="stat-label">Relevance Score</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">15</div>
+                                    <div class="stat-label">Missing Keywords</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="keywords-breakdown">
+                            <div class="keyword-category card-3d">
+                                <h4 class="category-title">High-Impact Keywords (Present)</h4>
+                                <div class="keyword-tags">
+                                    <span class="keyword-tag present">Full-Stack Development</span>
+                                    <span class="keyword-tag present">React.js</span>
+                                    <span class="keyword-tag present">Node.js</span>
+                                    <span class="keyword-tag present">Python</span>
+                                    <span class="keyword-tag present">API Development</span>
+                                    <span class="keyword-tag present">Database Design</span>
+                                </div>
+                            </div>
+                            
+                            <div class="keyword-category card-3d">
+                                <h4 class="category-title">Missing Keywords (Recommended)</h4>
+                                <div class="keyword-tags">
+                                    <span class="keyword-tag missing">Cloud Computing</span>
+                                    <span class="keyword-tag missing">DevOps</span>
+                                    <span class="keyword-tag missing">Microservices</span>
+                                    <span class="keyword-tag missing">CI/CD</span>
+                                    <span class="keyword-tag missing">Agile/Scrum</span>
+                                    <span class="keyword-tag missing">Machine Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="keyword-recommendations card-3d">
+                            <h4 class="recommendations-title">Keyword Integration Tips</h4>
+                            <ul class="recommendations-list">
+                                <li>Naturally incorporate missing keywords into your experience descriptions</li>
+                                <li>Use industry-standard terminology for your target roles</li>
+                                <li>Include both technical and soft skill keywords</li>
+                                <li>Update keywords based on specific job postings</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Job Matches -->
+    <section class="matches-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Top Job Matches</h2>
+            <p class="section-subtitle">Positions that align with your skills and experience</p>
+        </div>
+        
+        <div class="matches-grid">
+            <div class="match-card card-3d hover-lift">
+                <div class="match-header">
+                    <div class="match-score">95% Match</div>
+                    <div class="match-company">TechCorp Inc.</div>
+                </div>
+                <h3 class="match-title">Senior Full-Stack Developer</h3>
+                <div class="match-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Location:</span>
+                        <span class="detail-value">Remote / San Francisco</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Salary:</span>
+                        <span class="detail-value">$120k - $150k</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Experience:</span>
+                        <span class="detail-value">5+ years</span>
+                    </div>
+                </div>
+                <div class="match-skills">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">AWS</span>
+                </div>
+                <div class="match-actions">
+                    <button class="btn-3d btn-primary">Apply Now</button>
+                    <button class="btn-3d btn-secondary">View Details</button>
+                </div>
+            </div>
+            
+            <div class="match-card card-3d hover-lift">
+                <div class="match-header">
+                    <div class="match-score">92% Match</div>
+                    <div class="match-company">InnovateTech</div>
+                </div>
+                <h3 class="match-title">Software Engineer - Backend</h3>
+                <div class="match-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Location:</span>
+                        <span class="detail-value">New York, NY</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Salary:</span>
+                        <span class="detail-value">$110k - $140k</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Experience:</span>
+                        <span class="detail-value">3+ years</span>
+                    </div>
+                </div>
+                <div class="match-skills">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">Docker</span>
+                </div>
+                <div class="match-actions">
+                    <button class="btn-3d btn-primary">Apply Now</button>
+                    <button class="btn-3d btn-secondary">View Details</button>
+                </div>
+            </div>
+            
+            <div class="match-card card-3d hover-lift">
+                <div class="match-header">
+                    <div class="match-score">88% Match</div>
+                    <div class="match-company">StartupXYZ</div>
+                </div>
+                <h3 class="match-title">Full-Stack Developer</h3>
+                <div class="match-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Location:</span>
+                        <span class="detail-value">Austin, TX</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Salary:</span>
+                        <span class="detail-value">$90k - $120k</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Experience:</span>
+                        <span class="detail-value">2+ years</span>
+                    </div>
+                </div>
+                <div class="match-skills">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Express</span>
+                    <span class="skill-tag">MongoDB</span>
+                </div>
+                <div class="match-actions">
+                    <button class="btn-3d btn-primary">Apply Now</button>
+                    <button class="btn-3d btn-secondary">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Action Buttons -->
+    <section class="actions-section">
+        <div class="action-buttons">
+            <button class="btn-3d btn-primary btn-large" onclick="window.location.href='{{ url_for('upload_page') }}'">
+                <span class="btn-icon">📄</span>
+                <span class="btn-text">Upload Another Resume</span>
+            </button>
+            
+            <button class="btn-3d btn-secondary btn-large" onclick="downloadReport()">
+                <span class="btn-icon">📥</span>
+                <span class="btn-text">Download Full Report</span>
+            </button>
+            
+            <button class="btn-3d btn-accent btn-large" onclick="window.location.href='{{ url_for('jobs_page') }}'">
+                <span class="btn-icon">💼</span>
+                <span class="btn-text">Browse More Jobs</span>
+            </button>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Results page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📊 Results page initialized');
+    
+    // Initialize tab functionality
+    initTabs();
+    
+    // Initialize animations
+    initResultsAnimations();
+    
+    // Setup skill bar animations
+    setupSkillBars();
+});
+
+function initTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.dataset.tab;
+            
+            // Remove active class from all tabs and panels
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanels.forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding panel
+            btn.classList.add('active');
+            document.getElementById(`${targetTab}-tab`).classList.add('active');
+        });
+    });
+}
+
+function initResultsAnimations() {
+    // Animate summary cards
+    const summaryCards = document.querySelectorAll('.summary-card');
+    summaryCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 100}ms`;
+        card.classList.add('animate-fade-in');
+    });
+    
+    // Animate tab content
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    tabPanels.forEach(panel => {
+        panel.classList.add('animate-slide-up');
+    });
+    
+    // Animate match cards
+    const matchCards = document.querySelectorAll('.match-card');
+    matchCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 150}ms`;
+        card.classList.add('animate-scale-in');
+    });
+}
+
+function setupSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-fill');
+    
+    // Animate skill bars on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const skillBar = entry.target;
+                const width = skillBar.style.width;
+                skillBar.style.width = '0%';
+                
+                setTimeout(() => {
+                    skillBar.style.transition = 'width 1s ease-out';
+                    skillBar.style.width = width;
+                }, 100);
+                
+                observer.unobserve(skillBar);
+            }
+        });
+    });
+    
+    skillBars.forEach(bar => observer.observe(bar));
+}
+
+function downloadReport() {
+    // Show loading state
+    const btn = event.target.closest('button');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Generating Report...</span>';
+    btn.disabled = true;
+    
+    // Simulate report generation
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        
+        // Show success notification
+        showNotification('Report downloaded successfully!', 'success');
+    }, 2000);
+}
+
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type} animate-slide-down`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️'}</span>
+            <span class="notification-message">${message}</span>
+        </div>
+    `;
+    
+    // Add to notification container
+    const container = document.getElementById('notification-container');
+    container.appendChild(notification);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.add('animate-slide-up');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 5000);
+}
+
+// Tab switching with smooth transitions
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        // Add click effect
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+    });
+});
+</script>
+{% endblock %}

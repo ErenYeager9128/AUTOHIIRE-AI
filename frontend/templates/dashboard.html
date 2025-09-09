@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - AutoHire AI{% endblock %}
+
+{% block page_title %}AI Career Dashboard{% endblock %}
+{% block page_subtitle %}Your 3D Career Command Center{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Stats Overview -->
+    <section class="stats-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Career Statistics</h2>
+            <p class="section-subtitle">Real-time insights into your professional journey</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card card-3d tilt-3d" data-tilt="10" data-depth="5">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <h3 class="stat-value text-3d">3</h3>
+                    <p class="stat-label">Resumes Active</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-text">3/3 Uploaded</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card card-3d tilt-3d" data-tilt="10" data-depth="5">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-content">
+                    <h3 class="stat-value text-3d">85%</h3>
+                    <p class="stat-label">Match Rate</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                        <span class="progress-text">Excellent</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card card-3d tilt-3d" data-tilt="10" data-depth="5">
+                <div class="stat-icon">🚀</div>
+                <div class="stat-content">
+                    <h3 class="stat-value text-3d">12</h3>
+                    <p class="stat-label">Job Matches</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <span class="progress-text">This Week</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card card-3d tilt-3d" data-tilt="10" data-depth="5">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-content">
+                    <h3 class="stat-value text-3d">92%</h3>
+                    <p class="stat-label">ATS Score</p>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%"></div>
+                        </div>
+                        <span class="progress-text">Outstanding</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quick Actions -->
+    <section class="actions-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Quick Actions</h2>
+            <p class="section-subtitle">Jump into action with these powerful tools</p>
+        </div>
+        
+        <div class="actions-grid">
+            <div class="action-card card-3d hover-lift" onclick="window.location.href='{{ url_for('upload_page') }}'">
+                <div class="action-icon">📄</div>
+                <h3 class="action-title">Upload Resume</h3>
+                <p class="action-description">Add a new resume to your portfolio</p>
+                <div class="action-button">
+                    <span class="btn-text">Get Started</span>
+                    <span class="btn-arrow">→</span>
+                </div>
+            </div>
+            
+            <div class="action-card card-3d hover-lift" onclick="window.location.href='{{ url_for('results_page') }}'">
+                <div class="action-icon">🔍</div>
+                <h3 class="action-title">Analyze Resume</h3>
+                <p class="action-description">Get AI-powered insights and optimization tips</p>
+                <div class="action-button">
+                    <span class="btn-text">Analyze Now</span>
+                    <span class="btn-arrow">→</span>
+                </div>
+            </div>
+            
+            <div class="action-card card-3d hover-lift" onclick="window.location.href='{{ url_for('jobs_page') }}'">
+                <div class="action-icon">💼</div>
+                <h3 class="action-title">Find Jobs</h3>
+                <p class="action-description">Discover perfect job matches for your skills</p>
+                <div class="action-button">
+                    <span class="btn-text">Search Jobs</span>
+                    <span class="btn-arrow">→</span>
+                </div>
+            </div>
+            
+            <div class="action-card card-3d hover-lift" onclick="showOptimizationModal()">
+                <div class="action-icon">⚡</div>
+                <h3 class="action-title">Optimize Resume</h3>
+                <p class="action-description">Boost your ATS compatibility score</p>
+                <div class="action-button">
+                    <span class="btn-text">Optimize</span>
+                    <span class="btn-arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Recent Activity -->
+    <section class="activity-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Recent Activity</h2>
+            <p class="section-subtitle">Stay updated with your latest career moves</p>
+        </div>
+        
+        <div class="activity-timeline">
+            <div class="timeline-item card-3d">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <h4 class="timeline-title">Resume Uploaded</h4>
+                        <span class="timeline-time">2 hours ago</span>
+                    </div>
+                    <p class="timeline-description">Senior Software Engineer resume added successfully</p>
+                    <div class="timeline-meta">
+                        <span class="meta-tag">PDF</span>
+                        <span class="meta-tag">2.1 MB</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item card-3d">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <h4 class="timeline-title">Job Match Found</h4>
+                        <span class="timeline-time">4 hours ago</span>
+                    </div>
+                    <p class="timeline-description">95% match with Senior Full-Stack Developer at TechCorp</p>
+                    <div class="timeline-meta">
+                        <span class="meta-tag">Remote</span>
+                        <span class="meta-tag">$120k-150k</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item card-3d">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <h4 class="timeline-title">Resume Optimized</h4>
+                        <span class="timeline-time">1 day ago</span>
+                        </div>
+                    <p class="timeline-description">ATS score improved from 78% to 92%</p>
+                    <div class="timeline-meta">
+                        <span class="meta-tag">+14%</span>
+                        <span class="meta-tag">Optimized</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Career Insights -->
+    <section class="insights-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">AI Career Insights</h2>
+            <p class="section-subtitle">Data-driven recommendations for your career growth</p>
+        </div>
+        
+        <div class="insights-grid">
+            <div class="insight-card card-3d tilt-3d" data-tilt="5" data-depth="3">
+                <div class="insight-header">
+                    <div class="insight-icon">🎯</div>
+                    <h3 class="insight-title">Skill Gap Analysis</h3>
+                </div>
+                <div class="insight-content">
+                    <p class="insight-text">Based on your resume analysis, consider adding these skills:</p>
+                    <ul class="insight-list">
+                        <li>Cloud Computing (AWS/Azure)</li>
+                        <li>DevOps Practices</li>
+                        <li>Machine Learning Basics</li>
+                    </ul>
+                </div>
+                <div class="insight-action">
+                    <button class="btn-3d btn-small">View Details</button>
+                </div>
+            </div>
+            
+            <div class="insight-card card-3d tilt-3d" data-tilt="5" data-depth="3">
+                <div class="insight-header">
+                    <div class="insight-icon">📈</div>
+                    <h3 class="insight-title">Market Trends</h3>
+                </div>
+                <div class="insight-content">
+                    <p class="insight-text">Your skills are in high demand:</p>
+                    <div class="trend-chart">
+                        <div class="trend-bar">
+                            <span class="trend-label">Full-Stack Dev</span>
+                            <div class="trend-fill" style="width: 95%"></div>
+                            <span class="trend-value">95%</span>
+                        </div>
+                        <div class="trend-bar">
+                            <span class="trend-label">React/Node.js</span>
+                            <div class="trend-fill" style="width: 88%"></div>
+                            <span class="trend-value">88%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="insight-action">
+                    <button class="btn-3d btn-small">Learn More</button>
+                </div>
+            </div>
+            
+            <div class="insight-card card-3d tilt-3d" data-tilt="5" data-depth="3">
+                <div class="insight-header">
+                    <div class="insight-icon">💡</div>
+                    <h3 class="insight-title">Career Recommendations</h3>
+                </div>
+                <div class="insight-content">
+                    <p class="insight-text">Consider these career paths:</p>
+                    <ul class="insight-list">
+                        <li>Senior Full-Stack Developer</li>
+                        <li>Tech Lead / Engineering Manager</li>
+                        <li>Solutions Architect</li>
+                    </ul>
+                </div>
+                <div class="insight-action">
+                    <button class="btn-3d btn-small">Explore Paths</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Optimization Modal -->
+<div id="optimization-modal" class="modal">
+    <div class="modal-content card-3d">
+        <div class="modal-header">
+            <h3 class="modal-title text-3d-glow">Resume Optimization</h3>
+            <button class="modal-close" onclick="closeOptimizationModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="optimization-form">
+                <div class="form-group">
+                    <label for="resume-select">Select Resume to Optimize</label>
+                    <select id="resume-select" class="form-input">
+                        <option value="">Choose a resume...</option>
+                        <option value="1">Senior Software Engineer - Updated 2 hours ago</option>
+                        <option value="2">Full-Stack Developer - Updated 1 day ago</option>
+                        <option value="3">Tech Lead - Updated 3 days ago</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="optimization-focus">Focus Area</label>
+                    <select id="optimization-focus" class="form-input">
+                        <option value="ats">ATS Compatibility</option>
+                        <option value="keywords">Keyword Optimization</option>
+                        <option value="formatting">Formatting & Structure</option>
+                        <option value="content">Content Enhancement</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-3d btn-primary" onclick="startOptimization()">
+                        <span class="btn-icon">⚡</span>
+                        <span class="btn-text">Start Optimization</span>
+                    </button>
+                    <button class="btn-3d btn-secondary" onclick="closeOptimizationModal()">
+                        <span class="btn-text">Cancel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Dashboard-specific functionality
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎯 Dashboard initialized');
+    
+    // Initialize dashboard animations
+    initDashboardAnimations();
+    
+    // Setup real-time updates
+    setupRealTimeUpdates();
+});
+
+function initDashboardAnimations() {
+    // Animate stats cards on scroll
+    const statsCards = document.querySelectorAll('.stat-card');
+    statsCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 100}ms`;
+        card.classList.add('animate-fade-in');
+    });
+    
+    // Animate action cards
+    const actionCards = document.querySelectorAll('.action-card');
+    actionCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 150}ms`;
+        card.classList.add('animate-slide-up');
+    });
+    
+    // Animate timeline items
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 200}ms`;
+        item.classList.add('animate-slide-left');
+    });
+    
+    // Animate insight cards
+    const insightCards = document.querySelectorAll('.insight-card');
+    insightCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 250}ms`;
+        card.classList.add('animate-scale-in');
+    });
+}
+
+function setupRealTimeUpdates() {
+    // Simulate real-time updates
+    setInterval(() => {
+        updateRandomStat();
+    }, 5000);
+}
+
+function updateRandomStat() {
+    const statValues = document.querySelectorAll('.stat-value');
+    const randomStat = statValues[Math.floor(Math.random() * statValues.length)];
+    
+    // Add a subtle pulse effect
+    randomStat.classList.add('animate-pulse');
+    setTimeout(() => {
+        randomStat.classList.remove('animate-pulse');
+    }, 1000);
+}
+
+function showOptimizationModal() {
+    const modal = document.getElementById('optimization-modal');
+    modal.style.display = 'flex';
+    modal.classList.add('animate-fade-in');
+    
+    // Add backdrop blur effect
+    document.body.classList.add('modal-open');
+}
+
+function closeOptimizationModal() {
+    const modal = document.getElementById('optimization-modal');
+    modal.classList.add('animate-fade-out');
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('animate-fade-out');
+        document.body.classList.remove('modal-open');
+    }, 300);
+}
+
+function startOptimization() {
+    const resumeSelect = document.getElementById('resume-select');
+    const focusSelect = document.getElementById('optimization-focus');
+    
+    if (!resumeSelect.value) {
+        showNotification('Please select a resume to optimize', 'warning');
+        return;
+    }
+    
+    // Show loading state
+    const startBtn = document.querySelector('.btn-primary');
+    const originalText = startBtn.innerHTML;
+    startBtn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Optimizing...</span>';
+    startBtn.disabled = true;
+    
+    // Simulate optimization process
+    setTimeout(() => {
+        startBtn.innerHTML = originalText;
+        startBtn.disabled = false;
+        closeOptimizationModal();
+        
+        // Show success notification
+        showNotification('Resume optimization completed! Check your results page.', 'success');
+        
+        // Redirect to results page
+        setTimeout(() => {
+            window.location.href = '{{ url_for("results_page") }}';
+        }, 1500);
+    }, 3000);
+}
+
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type} animate-slide-down`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✅' : type === 'warning' ? '⚠️' : 'ℹ️'}</span>
+            <span class="notification-message">${message}</span>
+        </div>
+    `;
+    
+    // Add to notification container
+    const container = document.getElementById('notification-container');
+    container.appendChild(notification);
+    
+    // Remove after 5 seconds
+    setTimeout(() => {
+        notification.classList.add('animate-slide-up');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 5000);
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('optimization-modal');
+    if (event.target === modal) {
+        closeOptimizationModal();
+    }
+});
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeOptimizationModal();
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Job Matches - AutoHire AI{% endblock %}
+
+{% block page_title %}AI Job Matches{% endblock %}
+{% block page_subtitle %}Discover Your Perfect Career Opportunities{% endblock %}
+
+{% block content %}
+<div class="jobs-container">
+    <!-- Search & Filters -->
+    <section class="search-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Find Your Dream Job</h2>
+            <p class="section-subtitle">AI-powered job matching based on your skills</p>
+        </div>
+        
+        <div class="search-filters card-3d">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search jobs..." id="job-search">
+                <button class="btn-3d btn-primary" onclick="searchJobs()">Search</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Job Results -->
+    <section class="results-section">
+        <div class="results-header">
+            <h3>Found <span id="job-count">6</span> Jobs</h3>
+        </div>
+        
+        <div class="jobs-grid" id="jobs-grid">
+            <!-- Job cards will be populated by JavaScript -->
+        </div>
+    </section>
+</div>
+
+<script>
+const sampleJobs = [
+    {
+        id: 1,
+        title: "Senior Full-Stack Developer",
+        company: "TechCorp Inc.",
+        location: "San Francisco, CA",
+        salary: "$120k - $150k",
+        matchScore: 95,
+        skills: ["React", "Node.js", "Python", "AWS"]
+    },
+    {
+        id: 2,
+        title: "Software Engineer - Backend",
+        company: "InnovateTech",
+        location: "New York, NY",
+        salary: "$110k - $140k",
+        matchScore: 92,
+        skills: ["Python", "Django", "PostgreSQL", "Docker"]
+    }
+];
+
+function displayJobs() {
+    const jobsGrid = document.getElementById('jobs-grid');
+    const jobsHTML = sampleJobs.map(job => `
+        <div class="job-card card-3d hover-lift">
+            <h3 class="job-title">${job.title}</h3>
+            <div class="job-company">${job.company}</div>
+            <div class="job-location">${job.location}</div>
+            <div class="job-salary">${job.salary}</div>
+            <div class="job-match">${job.matchScore}% Match</div>
+            <div class="job-skills">
+                ${job.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+            </div>
+        </div>
+    `).join('');
+    
+    jobsGrid.innerHTML = jobsHTML;
+}
+
+function searchJobs() {
+    const searchTerm = document.getElementById('job-search').value;
+    console.log('Searching for:', searchTerm);
+    // Implement search functionality
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    displayJobs();
+});
+</script>
+{% endblock %}

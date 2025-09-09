@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - AutoHire AI{% endblock %}
+
+{% block page_title %}404 - Page Not Found{% endblock %}
+{% block page_subtitle %}The page you're looking for has vanished into the digital void{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-content">
+        <div class="error-visual">
+            <div class="error-number card-3d tilt-3d" data-tilt="15" data-depth="10">
+                <span class="number-text">404</span>
+                <div class="error-glow"></div>
+            </div>
+        </div>
+        
+        <div class="error-message card-3d">
+            <h2 class="error-title text-3d-glow">Page Not Found</h2>
+            <p class="error-description">
+                The page you're looking for seems to have been lost in the digital matrix. 
+                It might have been moved, deleted, or never existed in the first place.
+            </p>
+            
+            <div class="error-suggestions">
+                <h3 class="suggestions-title">Here are some things you can try:</h3>
+                <ul class="suggestions-list">
+                    <li>Check the URL for typos</li>
+                    <li>Go back to the previous page</li>
+                    <li>Return to the dashboard</li>
+                    <li>Contact support if the problem persists</li>
+                </ul>
+            </div>
+            
+            <div class="error-actions">
+                <button class="btn-3d btn-primary" onclick="history.back()">
+                    <span class="btn-icon">←</span>
+                    <span class="btn-text">Go Back</span>
+                </button>
+                
+                <button class="btn-3d btn-secondary" onclick="window.location.href='{{ url_for('index') }}'">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">Go Home</span>
+                </button>
+                
+                <button class="btn-3d btn-accent" onclick="window.location.href='{{ url_for('upload_page') }}'">
+                    <span class="btn-icon">📄</span>
+                    <span class="btn-text">Upload Resume</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="error-illustration">
+            <div class="floating-elements">
+                <div class="floating-card card-1"></div>
+                <div class="floating-card card-2"></div>
+                <div class="floating-card card-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚫 404 page initialized');
+    
+    // Initialize error page animations
+    initErrorAnimations();
+    
+    // Add some interactive elements
+    addInteractiveElements();
+});
+
+function initErrorAnimations() {
+    // Animate error number
+    const errorNumber = document.querySelector('.error-number');
+    errorNumber.classList.add('animate-bounce-in');
+    
+    // Animate error message
+    const errorMessage = document.querySelector('.error-message');
+    errorMessage.style.animationDelay = '0.5s';
+    errorMessage.classList.add('animate-fade-in');
+    
+    // Animate floating elements
+    const floatingCards = document.querySelectorAll('.floating-card');
+    floatingCards.forEach((card, index) => {
+        card.style.animationDelay = `${1 + index * 0.2}s`;
+        card.classList.add('animate-float');
+    });
+}
+
+function addInteractiveElements() {
+    // Add click effect to error number
+    const errorNumber = document.querySelector('.error-number');
+    errorNumber.addEventListener('click', function() {
+        this.style.transform = 'scale(1.1) rotate(5deg)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 300);
+    });
+    
+    // Add hover effects to buttons
+    const buttons = document.querySelectorAll('.btn-3d');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.05)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+}
+
+// Add some random glitch effects
+setInterval(() => {
+    const errorNumber = document.querySelector('.error-number');
+    if (Math.random() < 0.1) { // 10% chance every 3 seconds
+        errorNumber.style.filter = 'hue-rotate(180deg)';
+        setTimeout(() => {
+            errorNumber.style.filter = '';
+        }, 200);
+    }
+}, 3000);
+</script>
+{% endblock %}

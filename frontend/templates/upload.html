@@ -1,0 +1,1035 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Resume - AutoHire AI{% endblock %}
+{% block page_title %}Upload Your Resume{% endblock %}
+{% block page_subtitle %}AI-Powered Analysis & Optimization{% endblock %}
+
+{% block content %}
+<!-- 3D Upload Section -->
+<section class="upload-section">
+    <div class="upload-container">
+        <!-- Upload Zone -->
+        <div class="upload-zone-3d" id="upload-zone">
+            <div class="upload-content">
+                <div class="upload-icon">
+                    <div class="icon-3d">📄</div>
+                </div>
+                <h3 class="upload-title">Drop your resume here</h3>
+                <p class="upload-subtitle">or click to browse files</p>
+                <div class="upload-info">
+                    <div class="info-item">
+                        <span class="info-icon">✅</span>
+                        <span class="info-text">PDF format only</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">📏</span>
+                        <span class="info-text">Max 10MB</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🔒</span>
+                        <span class="info-text">Secure & private</span>
+                    </div>
+                </div>
+                <input type="file" id="file-input" accept=".pdf" style="display: none;">
+                <button class="btn-3d btn-primary" onclick="document.getElementById('file-input').click()">
+                    <span class="btn-icon">📁</span>
+                    Choose File
+                </button>
+            </div>
+            
+            <!-- Upload Progress -->
+            <div class="upload-progress" id="upload-progress" style="display: none;">
+                <div class="progress-header">
+                    <h4>Uploading...</h4>
+                    <div class="progress-percentage" id="progress-percentage">0%</div>
+                </div>
+                <div class="progress-3d">
+                    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+                </div>
+                <div class="progress-status" id="progress-status">Preparing upload...</div>
+            </div>
+            
+            <!-- Upload Success -->
+            <div class="upload-success" id="upload-success" style="display: none;">
+                <div class="success-icon">🎉</div>
+                <h4>Upload Successful!</h4>
+                <p id="success-message">Your resume has been uploaded and is being processed.</p>
+                <div class="success-actions">
+                    <button class="btn-3d btn-secondary" onclick="viewResume()">
+                        <span class="btn-icon">👁️</span>
+                        View Resume
+                    </button>
+                    <button class="btn-3d btn-primary" onclick="analyzeResume()">
+                        <span class="btn-icon">🔍</span>
+                        Analyze Now
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Upload Error -->
+            <div class="upload-error" id="upload-error" style="display: none;">
+                <div class="error-icon">❌</div>
+                <h4>Upload Failed</h4>
+                <p id="error-message">There was an error uploading your resume.</p>
+                <button class="btn-3d btn-secondary" onclick="retryUpload()">
+                    <span class="btn-icon">🔄</span>
+                    Try Again
+                </button>
+            </div>
+        </div>
+        
+        <!-- Upload Guidelines -->
+        <div class="upload-guidelines">
+            <h3 class="guidelines-title">Upload Guidelines</h3>
+            <div class="guidelines-grid">
+                <div class="guideline-card card-3d">
+                    <div class="guideline-icon">📋</div>
+                    <h4>File Format</h4>
+                    <p>Only PDF files are accepted for optimal text extraction and analysis.</p>
+                </div>
+                
+                <div class="guideline-card card-3d">
+                    <div class="guideline-icon">📏</div>
+                    <h4>File Size</h4>
+                    <p>Maximum file size is 10MB to ensure fast processing and analysis.</p>
+                </div>
+                
+                <div class="guideline-card card-3d">
+                    <div class="guideline-icon">🔒</div>
+                    <h4>Privacy & Security</h4>
+                    <p>Your resume is processed securely and never shared with third parties.</p>
+                </div>
+                
+                <div class="guideline-card card-3d">
+                    <div class="guideline-icon">⚡</div>
+                    <h4>Processing Time</h4>
+                    <p>AI analysis typically takes 10-30 seconds depending on resume complexity.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Resume Management -->
+        <div class="resume-management">
+            <h3 class="management-title">Your Resumes</h3>
+            <div class="resume-list" id="resume-list">
+                <div class="loading-spinner">
+                    <div class="spinner-3d"></div>
+                    <p>Loading your resumes...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating 3D Elements -->
+    <div class="floating-elements-upload">
+        <div class="floating-card-3d upload-card">
+            <div class="card-content">
+                <div class="upload-icon-small">📤</div>
+                <div class="upload-text">Quick Upload</div>
+            </div>
+        </div>
+        <div class="floating-card-3d ai-card">
+            <div class="card-content">
+                <div class="ai-icon-small">🤖</div>
+                <div class="ai-text">AI Analysis</div>
+            </div>
+        </div>
+        <div class="floating-card-3d secure-card">
+            <div class="card-content">
+                <div class="secure-icon-small">🔒</div>
+                <div class="secure-text">Secure</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3D Modal for File Preview -->
+<div class="modal-3d" id="preview-modal">
+    <div class="modal-content-3d">
+        <div class="modal-header">
+            <h3 class="modal-title">Resume Preview</h3>
+            <button class="modal-close" onclick="closePreviewModal()">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="preview-content" id="preview-content">
+                <!-- Preview content will be populated by JavaScript -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-3d btn-secondary" onclick="closePreviewModal()">Close</button>
+            <button class="btn-3d btn-primary" onclick="proceedWithUpload()">Upload Resume</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Upload page specific JavaScript
+let currentFile = null;
+let uploadInProgress = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+    initializeUploadPage();
+});
+
+function initializeUploadPage() {
+    // Initialize drag and drop
+    initDragAndDrop();
+    
+    // Initialize file input
+    initFileInput();
+    
+    // Load existing resumes
+    loadResumes();
+    
+    // Initialize floating elements
+    initFloatingElements();
+}
+
+function initDragAndDrop() {
+    const uploadZone = document.getElementById('upload-zone');
+    
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        uploadZone.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+    
+    // Highlight drop zone when item is dragged over it
+    ['dragenter', 'dragover'].forEach(eventName => {
+        uploadZone.addEventListener(eventName, highlight, false);
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+        uploadZone.addEventListener(eventName, unhighlight, false);
+    });
+    
+    // Handle dropped files
+    uploadZone.addEventListener('drop', handleDrop, false);
+    
+    // Handle click to upload
+    uploadZone.addEventListener('click', () => {
+        if (!uploadInProgress) {
+            document.getElementById('file-input').click();
+        }
+    });
+}
+
+function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+function highlight(e) {
+    const uploadZone = document.getElementById('upload-zone');
+    uploadZone.classList.add('drag-over');
+}
+
+function unhighlight(e) {
+    const uploadZone = document.getElementById('upload-zone');
+    uploadZone.classList.remove('drag-over');
+}
+
+function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    
+    if (files.length > 0) {
+        handleFiles(files[0]);
+    }
+}
+
+function initFileInput() {
+    const fileInput = document.getElementById('file-input');
+    
+    fileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            handleFiles(e.target.files[0]);
+        }
+    });
+}
+
+function handleFiles(file) {
+    // Validate file
+    if (!validateFile(file)) {
+        return;
+    }
+    
+    currentFile = file;
+    
+    // Show file preview
+    showFilePreview(file);
+}
+
+function validateFile(file) {
+    // Check file type
+    if (file.type !== 'application/pdf') {
+        showNotification('Please select a PDF file.', 'error');
+        return false;
+    }
+    
+    // Check file size (10MB)
+    if (file.size > 10 * 1024 * 1024) {
+        showNotification('File size must be less than 10MB.', 'error');
+        return false;
+    }
+    
+    return true;
+}
+
+function showFilePreview(file) {
+    const modal = document.getElementById('preview-modal');
+    const content = document.getElementById('preview-content');
+    
+    content.innerHTML = `
+        <div class="file-preview">
+            <div class="file-info">
+                <div class="file-icon">📄</div>
+                <div class="file-details">
+                    <h4>${file.name}</h4>
+                    <p>Size: ${formatFileSize(file.size)}</p>
+                    <p>Type: ${file.type}</p>
+                </div>
+            </div>
+            <div class="file-actions">
+                <button class="btn-3d btn-secondary" onclick="closePreviewModal()">
+                    <span class="btn-icon">❌</span>
+                    Cancel
+                </button>
+                <button class="btn-3d btn-primary" onclick="startUpload()">
+                    <span class="btn-icon">📤</span>
+                    Upload Resume
+                </button>
+            </div>
+        </div>
+    `;
+    
+    modal.classList.add('active');
+}
+
+function closePreviewModal() {
+    const modal = document.getElementById('preview-modal');
+    modal.classList.remove('active');
+    currentFile = null;
+}
+
+function startUpload() {
+    if (!currentFile) {
+        showNotification('No file selected.', 'error');
+        return;
+    }
+    
+    closePreviewModal();
+    uploadFile(currentFile);
+}
+
+function uploadFile(file) {
+    uploadInProgress = true;
+    
+    // Show upload progress
+    showUploadProgress();
+    
+    // Create FormData
+    const formData = new FormData();
+    formData.append('resume', file);
+    
+    // Simulate upload progress
+    simulateUploadProgress();
+    
+    // Make API call
+    fetch('/api/upload-resume', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showUploadSuccess(data);
+            loadResumes(); // Refresh resume list
+        } else {
+            showUploadError(data.error || 'Upload failed');
+        }
+    })
+    .catch(error => {
+        console.error('Upload error:', error);
+        showUploadError('Network error occurred');
+    })
+    .finally(() => {
+        uploadInProgress = false;
+    });
+}
+
+function simulateUploadProgress() {
+    let progress = 0;
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercentage = document.getElementById('progress-percentage');
+    const progressStatus = document.getElementById('progress-status');
+    
+    const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress > 90) progress = 90;
+        
+        progressBar.style.width = progress + '%';
+        progressPercentage.textContent = Math.round(progress) + '%';
+        
+        if (progress < 30) {
+            progressStatus.textContent = 'Preparing file...';
+        } else if (progress < 60) {
+            progressStatus.textContent = 'Uploading to server...';
+        } else if (progress < 90) {
+            progressStatus.textContent = 'Processing with AI...';
+        }
+        
+        if (progress >= 90) {
+            clearInterval(interval);
+        }
+    }, 200);
+}
+
+function showUploadProgress() {
+    hideAllUploadStates();
+    document.getElementById('upload-progress').style.display = 'block';
+}
+
+function showUploadSuccess(data) {
+    hideAllUploadStates();
+    const successElement = document.getElementById('upload-success');
+    const messageElement = document.getElementById('success-message');
+    
+    messageElement.textContent = data.message || 'Your resume has been uploaded successfully!';
+    successElement.style.display = 'block';
+    
+    // Store resume ID for later use
+    window.currentResumeId = data.resume_id;
+}
+
+function showUploadError(message) {
+    hideAllUploadStates();
+    const errorElement = document.getElementById('upload-error');
+    const messageElement = document.getElementById('error-message');
+    
+    messageElement.textContent = message;
+    errorElement.style.display = 'block';
+}
+
+function hideAllUploadStates() {
+    document.getElementById('upload-progress').style.display = 'none';
+    document.getElementById('upload-success').style.display = 'none';
+    document.getElementById('upload-error').style.display = 'none';
+}
+
+function loadResumes() {
+    const resumeList = document.getElementById('resume-list');
+    
+    fetch('/api/resumes')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                displayResumes(data.resumes, data.count, data.max_allowed);
+            } else {
+                resumeList.innerHTML = '<p class="error">Error loading resumes</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error loading resumes:', error);
+            resumeList.innerHTML = '<p class="error">Network error</p>';
+        });
+}
+
+function displayResumes(resumes, count, maxAllowed) {
+    const resumeList = document.getElementById('resume-list');
+    
+    if (resumes.length === 0) {
+        resumeList.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">📄</div>
+                <h4>No Resumes Yet</h4>
+                <p>Upload your first resume to get started with AI-powered analysis!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    const resumeItems = resumes.map(resume => `
+        <div class="resume-item card-3d" data-resume-id="${resume.id}">
+            <div class="resume-header">
+                <div class="resume-icon">📄</div>
+                <div class="resume-info">
+                    <h4 class="resume-name">${resume.original_filename}</h4>
+                    <p class="resume-date">Uploaded: ${new Date(resume.upload_date).toLocaleDateString()}</p>
+                </div>
+                <div class="resume-actions">
+                    <button class="btn-3d btn-sm btn-secondary" onclick="viewResume(${resume.id})">
+                        <span class="btn-icon">👁️</span>
+                        View
+                    </button>
+                    <button class="btn-3d btn-sm btn-primary" onclick="analyzeResume(${resume.id})">
+                        <span class="btn-icon">🔍</span>
+                        Analyze
+                    </button>
+                    <button class="btn-3d btn-sm btn-danger" onclick="deleteResume(${resume.id})">
+                        <span class="btn-icon">🗑️</span>
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+    
+    resumeList.innerHTML = `
+        <div class="resume-stats">
+            <div class="stat-item">
+                <span class="stat-number">${count}</span>
+                <span class="stat-label">Resumes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">${maxAllowed - count}</span>
+                <span class="stat-label">Slots Left</span>
+            </div>
+        </div>
+        <div class="resume-items">
+            ${resumeItems}
+        </div>
+    `;
+}
+
+function viewResume(resumeId) {
+    // Navigate to results page with resume ID
+    window.location.href = `/results?resume_id=${resumeId}`;
+}
+
+function analyzeResume(resumeId) {
+    // Navigate to results page for analysis
+    window.location.href = `/results?resume_id=${resumeId}&analyze=true`;
+}
+
+function deleteResume(resumeId) {
+    if (confirm('Are you sure you want to delete this resume?')) {
+        fetch(`/api/delete-resume/${resumeId}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showNotification('Resume deleted successfully.', 'success');
+                loadResumes(); // Refresh the list
+            } else {
+                showNotification('Failed to delete resume.', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Delete error:', error);
+            showNotification('Error deleting resume.', 'error');
+        });
+    }
+}
+
+function retryUpload() {
+    hideAllUploadStates();
+    currentFile = null;
+}
+
+function initFloatingElements() {
+    const floatingCards = document.querySelectorAll('.floating-card-3d');
+    
+    floatingCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 1}s`;
+        
+        // Add hover effects
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateZ(20px) rotateX(5deg) rotateY(5deg)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateZ(0) rotateX(0) rotateY(0)';
+        });
+    });
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+// Utility functions
+function showNotification(message, type = 'info') {
+    if (window.showNotification) {
+        window.showNotification(message, type);
+    } else {
+        alert(message);
+    }
+}
+</script>
+
+<style>
+/* Upload page specific styles */
+.upload-section {
+    position: relative;
+    z-index: 1;
+}
+
+.upload-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.upload-zone-3d {
+    background: var(--bg-glass);
+    border: 2px dashed var(--border-primary);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xxl);
+    text-align: center;
+    margin-bottom: var(--spacing-xxl);
+    transition: var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+}
+
+.upload-zone-3d:hover {
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-primary);
+    transform: translateY(-5px);
+}
+
+.upload-zone-3d.drag-over {
+    border-color: var(--primary-cyan);
+    background: rgba(0, 255, 255, 0.1);
+    transform: scale(1.02);
+}
+
+.upload-content {
+    position: relative;
+    z-index: 2;
+}
+
+.upload-icon {
+    margin-bottom: var(--spacing-lg);
+}
+
+.icon-3d {
+    font-size: 4rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.upload-title {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.upload-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.upload-info {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.info-icon {
+    font-size: 1.2rem;
+}
+
+.upload-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-glass);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xl);
+    z-index: 3;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+}
+
+.progress-header h4 {
+    color: var(--text-primary);
+    margin-bottom: 0;
+}
+
+.progress-percentage {
+    color: var(--primary-cyan);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.progress-3d {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: var(--spacing-md);
+}
+
+.progress-status {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.upload-success,
+.upload-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-glass);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xl);
+    z-index: 3;
+    text-align: center;
+}
+
+.success-icon,
+.error-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.upload-success h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.upload-success p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.success-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.upload-error h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.upload-error p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Guidelines Section */
+.upload-guidelines {
+    margin-bottom: var(--spacing-xxl);
+}
+
+.guidelines-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-primary);
+}
+
+.guidelines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.guideline-card {
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.guideline-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.guideline-card h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.guideline-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Resume Management */
+.resume-management {
+    margin-bottom: var(--spacing-xxl);
+}
+
+.management-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-primary);
+}
+
+.resume-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.resume-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-cyan);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.resume-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.resume-item {
+    padding: var(--spacing-lg);
+}
+
+.resume-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.resume-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.resume-info {
+    flex: 1;
+}
+
+.resume-name {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.resume-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.resume-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.btn-sm {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+}
+
+/* Floating Elements */
+.floating-elements-upload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-card-3d {
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.upload-card {
+    top: 20%;
+    right: 10%;
+}
+
+.ai-card {
+    top: 60%;
+    left: 5%;
+}
+
+.secure-card {
+    bottom: 30%;
+    right: 20%;
+}
+
+.upload-text,
+.ai-text,
+.secure-text {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.empty-state h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.loading-spinner p {
+    margin-top: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+/* File Preview Modal */
+.file-preview {
+    text-align: center;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    justify-content: center;
+}
+
+.file-icon {
+    font-size: 2rem;
+}
+
+.file-details h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.file-details p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9rem;
+}
+
+.file-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .upload-zone-3d {
+        padding: var(--spacing-lg);
+    }
+    
+    .upload-title {
+        font-size: 1.5rem;
+    }
+    
+    .upload-info {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .guidelines-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .resume-stats {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .resume-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+    
+    .resume-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .floating-card-3d {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .upload-zone-3d {
+        padding: var(--spacing-md);
+    }
+    
+    .success-actions,
+    .file-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .success-actions .btn-3d,
+    .file-actions .btn-3d {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
