@@ -66,6 +66,11 @@ def jobs_page():
     """Job matching page with 3D interactive elements."""
     return render_template('jobs.html')
 
+@app.route('/showcase')
+def showcase_page():
+    """Animation showcase page demonstrating all smooth animations."""
+    return render_template('animation-showcase.html')
+
 @app.route('/api/upload-resume', methods=['POST'])
 def upload_resume():
     """API endpoint for resume upload with 3D feedback."""

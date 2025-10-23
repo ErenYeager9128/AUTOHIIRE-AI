@@ -16,14 +16,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/3d-effects.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/enhanced-animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom-cursor.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Preload critical resources -->
     <link rel="preload" href="{{ url_for('static', filename='js/main.js') }}" as="script">
     <link rel="preload" href="{{ url_for('static', filename='js/3d-effects.js') }}" as="script">
+
+    <!-- Page-specific styles -->
+    {% block styles %}{% endblock %}
 </head>
 <body class="cyberpunk-theme">
     <!-- Custom 3D Cursor -->
@@ -65,6 +70,10 @@
                 <a href="{{ url_for('jobs_page') }}" class="nav-link" data-route="jobs">
                     <span class="link-icon">💼</span>
                     <span class="link-text">Job Matches</span>
+                </a>
+                <a href="{{ url_for('showcase_page') }}" class="nav-link" data-route="showcase">
+                    <span class="link-icon">✨</span>
+                    <span class="link-text">Animations</span>
                 </a>
             </div>
             
@@ -162,6 +171,7 @@
     <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
     <script src="{{ url_for('static', filename='js/cursor.js') }}"></script>
     <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/enhanced-animations.js') }}"></script>
     
     <!-- Page-specific scripts -->
     {% block scripts %}{% endblock %}

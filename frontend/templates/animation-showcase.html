@@ -1,0 +1,422 @@
+{% extends "base.html" %}
+
+{% block title %}Animation Showcase - AutoHire AI{% endblock %}
+{% block page_title %}Animation Showcase{% endblock %}
+{% block page_subtitle %}Experience Beautiful Smooth Animations{% endblock %}
+
+{% block styles %}
+<style>
+.showcase-container {
+    padding: var(--spacing-xl) 0;
+}
+
+.showcase-section {
+    margin-bottom: var(--spacing-xxl);
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.demo-card {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.demo-card h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-cyan);
+}
+
+.demo-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.controls {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-top: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.animation-label {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-sm);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="showcase-container">
+    <!-- Card Animations -->
+    <section class="showcase-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Card Animations</h2>
+            <p class="section-subtitle">Smooth and beautiful card effects</p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="demo-card card-3d hover-lift">
+                <div>
+                    <h4>Hover Lift</h4>
+                    <p>Lifts up on hover with shadow</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d gradient-border">
+                <div>
+                    <h4>Gradient Border</h4>
+                    <p>Animated gradient border on hover</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d" style="animation: smoothFloat 4s ease-in-out infinite;">
+                <div>
+                    <h4>Smooth Float</h4>
+                    <p>Gentle floating animation</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d smooth-pulse">
+                <div>
+                    <h4>Smooth Pulse</h4>
+                    <p>Subtle pulsing effect</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Button Animations -->
+    <section class="showcase-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Button Animations</h2>
+            <p class="section-subtitle">Interactive button effects</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn-3d btn-primary ripple-effect">
+                <span class="btn-icon">✨</span>
+                <span class="btn-text">Ripple Effect</span>
+            </button>
+
+            <button class="btn-3d btn-secondary">
+                <span class="btn-icon">🚀</span>
+                <span class="btn-text">Hover Me</span>
+            </button>
+
+            <button class="btn-3d btn-primary smooth-pulse">
+                <span class="btn-icon">💫</span>
+                <span class="btn-text">Pulsing Button</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Text Animations -->
+    <section class="showcase-section scroll-reveal">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Text Animations</h2>
+            <p class="section-subtitle">Animated typography effects</p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="demo-card card-3d">
+                <div>
+                    <h4 class="text-reveal">Word By Word Animation</h4>
+                    <p class="animation-label">Text Reveal Effect</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d">
+                <div>
+                    <h4 style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gradient Text</h4>
+                    <p class="animation-label">Gradient Clipping</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d">
+                <div class="glitch-effect">
+                    <h4>Glitch Effect</h4>
+                    <p class="animation-label">Hover for glitch</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Entrance Animations -->
+    <section class="showcase-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Entrance Animations</h2>
+            <p class="section-subtitle">Elements entering the viewport</p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="demo-card card-3d fade-slide-in-up stagger-delay-1">
+                <div>
+                    <h4>Slide Up</h4>
+                    <p>Fades and slides from bottom</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d fade-slide-in-down stagger-delay-2">
+                <div>
+                    <h4>Slide Down</h4>
+                    <p>Fades and slides from top</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d stagger-delay-3" style="animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);">
+                <div>
+                    <h4>Scale In</h4>
+                    <p>Scales from center</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d stagger-delay-4" style="animation: rotateIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);">
+                <div>
+                    <h4>Rotate In</h4>
+                    <p>Rotates while entering</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Indicators -->
+    <section class="showcase-section scroll-reveal">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Progress Indicators</h2>
+            <p class="section-subtitle">Animated progress bars and spinners</p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="demo-card card-3d">
+                <div style="width: 100%;">
+                    <h4>Progress Bar</h4>
+                    <div class="progress-3d" style="margin-top: var(--spacing-md);">
+                        <div class="progress-bar" style="width: 75%;"></div>
+                    </div>
+                    <p class="animation-label">With shimmer effect</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d">
+                <div>
+                    <div class="spinner-3d"></div>
+                    <p class="animation-label" style="margin-top: var(--spacing-md);">Loading Spinner</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d">
+                <div style="width: 100%;">
+                    <h4>Multi-Step Progress</h4>
+                    <div class="progress-3d" style="margin-top: var(--spacing-md); margin-bottom: var(--spacing-sm);">
+                        <div class="progress-bar" style="width: 33%; background: var(--accent-green);"></div>
+                    </div>
+                    <div class="progress-3d" style="margin-bottom: var(--spacing-sm);">
+                        <div class="progress-bar" style="width: 66%; background: var(--primary-cyan);"></div>
+                    </div>
+                    <div class="progress-3d">
+                        <div class="progress-bar" style="width: 100%; background: var(--accent-orange);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification Demo -->
+    <section class="showcase-section scroll-reveal">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Notification System</h2>
+            <p class="section-subtitle">Smooth notification animations</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn-3d btn-primary" onclick="showDemoNotification('success')">
+                <span class="btn-icon">✅</span>
+                <span class="btn-text">Success</span>
+            </button>
+
+            <button class="btn-3d btn-secondary" onclick="showDemoNotification('error')">
+                <span class="btn-icon">❌</span>
+                <span class="btn-text">Error</span>
+            </button>
+
+            <button class="btn-3d btn-primary" onclick="showDemoNotification('info')">
+                <span class="btn-icon">ℹ️</span>
+                <span class="btn-text">Info</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Cursor Demo -->
+    <section class="showcase-section scroll-reveal">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Custom Cursor</h2>
+            <p class="section-subtitle">Move your mouse around to see the custom cursor</p>
+        </div>
+
+        <div class="demo-card card-3d" style="min-height: 300px;">
+            <div>
+                <h4>Interactive Area</h4>
+                <p>The cursor changes when hovering over interactive elements</p>
+                <div style="margin-top: var(--spacing-lg);">
+                    <a href="#" style="margin: 0 var(--spacing-sm);">Link</a>
+                    <button class="btn-3d btn-primary" style="margin: 0 var(--spacing-sm);">Button</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Transformations -->
+    <section class="showcase-section scroll-reveal">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">3D Transformations</h2>
+            <p class="section-subtitle">Move your mouse over the cards</p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="demo-card card-3d">
+                <div>
+                    <h4>3D Tilt</h4>
+                    <p>Follows your cursor in 3D space</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d">
+                <div>
+                    <h4>Depth Effect</h4>
+                    <p>Creates sense of depth</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d">
+                <div>
+                    <h4>Perspective</h4>
+                    <p>Realistic 3D perspective</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blob Animation -->
+    <section class="showcase-section scroll-reveal">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Organic Shapes</h2>
+            <p class="section-subtitle">Smooth blob animations</p>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: var(--spacing-xl); flex-wrap: wrap;">
+            <div class="blob-shape" style="width: 200px; height: 200px; opacity: 0.3;"></div>
+            <div class="blob-shape" style="width: 200px; height: 200px; opacity: 0.3; animation-delay: 2s;"></div>
+            <div class="blob-shape" style="width: 200px; height: 200px; opacity: 0.3; animation-delay: 4s;"></div>
+        </div>
+    </section>
+
+    <!-- Scroll Reveal Demo -->
+    <section class="showcase-section">
+        <div class="section-header">
+            <h2 class="section-title text-3d-glow">Scroll Reveal</h2>
+            <p class="section-subtitle">Elements animate in as you scroll</p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="demo-card card-3d scroll-reveal">
+                <div>
+                    <h4>Scroll Element 1</h4>
+                    <p>Appears on scroll</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d scroll-reveal">
+                <div>
+                    <h4>Scroll Element 2</h4>
+                    <p>Appears on scroll</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d scroll-reveal">
+                <div>
+                    <h4>Scroll Element 3</h4>
+                    <p>Appears on scroll</p>
+                </div>
+            </div>
+
+            <div class="demo-card card-3d scroll-reveal">
+                <div>
+                    <h4>Scroll Element 4</h4>
+                    <p>Appears on scroll</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function showDemoNotification(type) {
+    const messages = {
+        success: 'Operation completed successfully!',
+        error: 'An error occurred. Please try again.',
+        info: 'This is an informational message.'
+    };
+
+    if (window.showNotification) {
+        window.showNotification(messages[type], type, 5000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎨 Animation Showcase loaded');
+
+    const rippleButtons = document.querySelectorAll('.ripple-effect');
+    rippleButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const ripple = document.createElement('span');
+            ripple.style.cssText = `
+                position: absolute;
+                left: ${x}px;
+                top: ${y}px;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: translate(-50%, -50%);
+                animation: ripple 0.6s ease-out;
+                pointer-events: none;
+            `;
+
+            this.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+});
+</script>
+{% endblock %}

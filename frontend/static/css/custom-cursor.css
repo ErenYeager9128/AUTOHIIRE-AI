@@ -1,0 +1,98 @@
+/**
+ * AutoHire AI - Custom Cursor Styles
+ * Smooth and beautiful cursor animations
+ */
+
+.custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-cyan);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+}
+
+.cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--primary-cyan);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s ease;
+    animation: cursorPulse 2s ease-in-out infinite;
+}
+
+@keyframes cursorPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--primary-cyan);
+    border-radius: 50%;
+    opacity: 0.3;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.5s ease;
+}
+
+.custom-cursor.hover .cursor-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--accent-orange);
+}
+
+.custom-cursor.hover .cursor-ring {
+    width: 48px;
+    height: 48px;
+    border-color: var(--accent-orange);
+}
+
+.custom-cursor.hover .cursor-trail {
+    opacity: 0.6;
+}
+
+.custom-cursor.click .cursor-dot {
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.custom-cursor.click .cursor-ring {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+body {
+    cursor: none;
+}
+
+a, button, input, select, textarea {
+    cursor: none;
+}
+
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none;
+    }
+
+    body, a, button, input, select, textarea {
+        cursor: auto;
+    }
+}
